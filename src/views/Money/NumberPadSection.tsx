@@ -24,7 +24,7 @@ export default function NumberPadSection() {
             <div className='output' >
                 {output}
             </div>
-            <div className='pad clearfix' onClick={onClickButtonWrapper}>//button的事件委托给父级标签
+            <div className='pad clearfix' onClick={onClickButtonWrapper}>{/* button的事件委托给父级标签 */}
                 <button>1</button>
                 <button>2</button>
                 <button>3</button>
