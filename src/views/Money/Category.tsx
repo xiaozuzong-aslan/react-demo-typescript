@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styled from 'styled-components'
 
 const SectionType = styled.section`
@@ -27,11 +27,22 @@ const SectionType = styled.section`
 `;
 
 export default function Category() {
+    const categoryMap = {'-':'支出','+':'收入'}
+    type keys =  keyof typeof categoryMap
+    const [categoryList] = useState<keys[]>(['+','-'])
+    const [category,setCategory] = useState<string>('-')
+
     return (
         <SectionType>
             <ul>
-                <li className='selected'>支出</li>
-                <li>收入</li>
+                
+                {categoryList.map((item,index)=><li key={index}
+                className={category===item?'selected':''}
+                onClick={()=>{
+                    setCategory(item)
+                }}
+                >{categoryMap[item]}</li>)}
+               
             </ul>
         </SectionType>
     )

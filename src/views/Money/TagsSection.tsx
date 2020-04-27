@@ -45,16 +45,7 @@ const TagsSection:React.FC = (props) => {
     const [list,setList] = useState<string[]>([])
     const selected = (tag:string) => {
         const index = list.indexOf(tag)
-        if(index>=0){
-            setList((state)=>{
-                console.log(state.filter(item=>item!==tag))
-                return state.filter(item=>item!==tag)
-            })
-        }else{
-            setList((state)=>{
-                return [...state,tag]
-            })
-        }
+        index>=0 ? setList(state=> state.filter(item=>item!==tag)) :setList(state=>[...state,tag])
     }
     const add = ()=>{
         const name = window.prompt('请输入标签名')
