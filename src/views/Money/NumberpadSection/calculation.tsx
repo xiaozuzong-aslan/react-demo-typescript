@@ -11,8 +11,9 @@ const calculation = (text:string,output='0') => {
             return output+text
         }
     }else if(text === '.'){
-        
+        console.log(text)
         if(output.indexOf('.')<0){
+            console.log(output)
             return output+text
         }
     }else if(text==='删除'){

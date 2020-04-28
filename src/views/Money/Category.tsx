@@ -25,13 +25,19 @@ const SectionType = styled.section`
         }
     }
 `;
+const categoryMap = {'-':'支出','+':'收入'}
+type keys =  keyof typeof categoryMap
 
-export default function Category() {
-    const categoryMap = {'-':'支出','+':'收入'}
-    type keys =  keyof typeof categoryMap
+
+type Props = {
+    value:keys,
+    onChange:(category:keys)=>void
+}
+
+const Category:React.FC<Props> = (props) =>{
     const [categoryList] = useState<keys[]>(['+','-'])
-    const [category,setCategory] = useState<string>('-')
-
+    // const [category,setCategory] = useState<string>('-')
+    const category = props.value
     return (
         <SectionType>
             <ul>
@@ -39,7 +45,7 @@ export default function Category() {
                 {categoryList.map((item,index)=><li key={index}
                 className={category===item?'selected':''}
                 onClick={()=>{
-                    setCategory(item)
+                    props.onChange(item)
                 }}
                 >{categoryMap[item]}</li>)}
                
@@ -47,3 +53,4 @@ export default function Category() {
         </SectionType>
     )
 }
+export default  Category

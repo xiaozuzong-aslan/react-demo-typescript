@@ -39,13 +39,21 @@ const Wrapper = styled.section`
     }
    
 `;
+type Props = {
+    value:string[],
+    onChange:(selected:string[])=>void;
+    
+}
 
-const TagsSection:React.FC = (props) => {
+const TagsSection:React.FC<Props> = (props) => {
+    
     const [tags,setTags] = useState<string[]>(['衣','食','住','行'])
-    const [list,setList] = useState<string[]>([])
+    
+    // const [list,setList] = useState<string[]>([])
+    const list = props.value;
     const selected = (tag:string) => {
         const index = list.indexOf(tag)
-        index>=0 ? setList(state=> state.filter(item=>item!==tag)) :setList(state=>[...state,tag])
+        index>=0 ? props.onChange(list.filter(item=>item!==tag)) :props.onChange([...list,tag])
     }
     const add = ()=>{
         const name = window.prompt('请输入标签名')

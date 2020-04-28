@@ -1,18 +1,23 @@
-import React,{useState} from 'react'
+import React from 'react'
 import Wrapper from './NumberpadSection/Wrapper'
 import calculation from './NumberpadSection/calculation'
 
 
-export default function NumberPadSection() {
-    const [output,setOutput] = useState<string>('0')
-    
+type Props = {
+    value:string,
+    onChange:(amount:string)=>void
+}
+const NumberPadSection:React.FC<Props> = (props) =>{
+    // const [output,setOutput] = useState<string>('0')
+    let output = props.value.toString()
     const onClickButtonWrapper = (e:React.MouseEvent)=>{
         const text = (e.target as HTMLButtonElement).textContent
             if(text!==null){
                 if('1234567890.'.split('').concat(['清空','删除']).indexOf(text)>=0){
+                    
                     const newText = calculation(text,output)//引入计算函数
                     if(newText){
-                        setOutput(newText)
+                        props.onChange(newText)
                     }
                 }else if(text === 'OK'){
                     console.log('xxxxx')
@@ -43,3 +48,4 @@ export default function NumberPadSection() {
     </Wrapper>
     )
 }
+export default NumberPadSection

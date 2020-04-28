@@ -1,4 +1,4 @@
-import React,{useState,useRef} from 'react'
+import React,{useRef} from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.section`
@@ -21,20 +21,26 @@ const Wrapper = styled.section`
     }
 `;
 
+type Props = {
+    value:string,
+    onChange:(note:string) => void
+}
+
+
 //非受控组件写法
-const NotesSection:React.FC = () =>{
-    const [note,setNote] = useState<string>('')
+const NotesSection:React.FC<Props> = (props) =>{
+
     const text = useRef<HTMLInputElement>(null)
     const onBlur = () =>{
-        text.current && setNote(text.current.value)
+        text.current && props.onChange(text.current.value)
     }
     return (
         <Wrapper>
             <label>
-                {note}
+               
                 <span>备注</span>
                 <input type="text" 
-                defaultValue={note}
+                defaultValue={props.value}
                 ref={text}
                 onBlur={onBlur}
                 />
