@@ -1,5 +1,6 @@
-import React,{useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
+import useTages from '../useTag'
 
 const Wrapper = styled.section`
     
@@ -47,7 +48,7 @@ type Props = {
 
 const TagsSection:React.FC<Props> = (props) => {
     
-    const [tags,setTags] = useState<string[]>(['衣','食','住','行'])
+    const {tags,setTags} = useTages()
     
     // const [list,setList] = useState<string[]>([])
     const list = props.value;

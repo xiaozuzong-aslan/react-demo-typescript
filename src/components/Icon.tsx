@@ -1,7 +1,5 @@
 import React from 'react'
-// require('icons/label.svg')
-// require('icons/money.svg')
-// require('icons/statistics.svg')
+
 
 let importAll = (requireContext:__WebpackModuleApi.RequireContext) => requireContext.keys().forEach(requireContext);
 try{
