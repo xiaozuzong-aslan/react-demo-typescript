@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import useTages from '../useTag'
-
+import createId from 'helpers/createId'
 const Wrapper = styled.section`
     
     flex-grow:1;
@@ -41,8 +41,8 @@ const Wrapper = styled.section`
    
 `;
 type Props = {
-    value:string[],
-    onChange:(selected:string[])=>void;
+    value:number[],
+    onChange:(selected:number[])=>void;
     
 }
 
@@ -52,15 +52,15 @@ const TagsSection:React.FC<Props> = (props) => {
     
     // const [list,setList] = useState<string[]>([])
     const list = props.value;
-    const selected = (tag:string) => {
-        const index = list.indexOf(tag)
-        index>=0 ? props.onChange(list.filter(item=>item!==tag)) :props.onChange([...list,tag])
+    const selected = (tagId:number) => {
+        const index = list.indexOf(tagId)
+        index>=0 ? props.onChange(list.filter(item=>item!==tagId)) :props.onChange([...list,tagId])
     }
     const add = ()=>{
         const name = window.prompt('请输入标签名')
         if(name!== null){
             if(name.length > 0){
-                setTags(state=>[...state,name])
+                setTags(state=>[...state,{id:createId(),name}])
             }else{
                 window.alert('内容不能为空哒')
             }
@@ -71,11 +71,11 @@ const TagsSection:React.FC<Props> = (props) => {
         <Wrapper>
             <ol>
                {tags.map((item,index)=><li key={index} 
-               className={list.indexOf(item)>=0?'selected':''}
+               className={list.indexOf(item.id)>=0?'selected':''}
                onClick={()=>{
-                selected(item)
+                selected(item.id)
                }}
-               >{item}</li>)}
+               >{item.name}</li>)}
             </ol>
             <div><button onClick={add}>新建标签</button></div>
             

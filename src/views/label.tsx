@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import Layout from 'components/Layout'
 import useTages from './useTag'
 import styled from 'styled-components'
@@ -7,11 +8,13 @@ const TagList = styled.ol`
     /* padding:0 16px; */
     font-size:16px;
     li{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
+        a{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:12px 16px 12px 0;
+        }
         border-bottom:1px solid #d5d5d9;
-        padding:12px 16px 12px 0;
         margin-left:16px;
         svg{
             width:24px;
@@ -19,6 +22,7 @@ const TagList = styled.ol`
             fill:#d5d5d9;
         }
     }
+    
     
     
 `;
@@ -37,12 +41,12 @@ const ButtonWrapper = styled.div`
 `;
 
 export default function Money() {
-    const {tags,setTags} = useTages()
-    console.log(setTags)
+    const {tags} = useTages()
+    
     return (
         <Layout>
             <TagList>
-            {tags.map(item=><li key={item}><span className='oneline'>{item}</span><Icon name='right'/></li>)}
+            {tags.map(item=><li key={item.id}><Link to={`/tags/${item.id}`} > <span className='oneline'>{item.name}</span><Icon name='right'/></Link></li>)}
             </TagList>
             <ButtonWrapper ><button>新建标签</button></ButtonWrapper>
         </Layout>

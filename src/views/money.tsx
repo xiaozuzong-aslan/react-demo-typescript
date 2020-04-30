@@ -11,7 +11,7 @@ type Category = '-' | '+'
 
 const Tags:React.FC = () =>{
     const [selected,setSelected] = useState({
-        tags:[] as string[],
+        tags:[] as number[],
         note:'',
         category:'-' as Category,
         amount:'0'

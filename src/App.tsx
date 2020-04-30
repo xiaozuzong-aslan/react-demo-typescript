@@ -8,20 +8,24 @@ import Tags from 'views/label';
 import Money from 'views/money';
 import Statistics from 'views/statistics';
 import NotFind from 'views/notFind';
-
+import Tag from 'views/Tag'
 
 export default function App() {
   return (
        <Router>
         <Switch >
+        
           <Redirect  from="/" exact to="/money" />
-          <Route path="/tags">
+          <Route exact path="/tags">
             <Tags />
           </Route>
-          <Route path="/money">
+          <Route exact path="/tags/:id">
+            <Tag />
+          </Route>
+          <Route exact path="/money" >
             <Money />
           </Route>
-          <Route path="/statistics">
+          <Route exact path="/statistics">
             <Statistics />
           </Route>
           <Route path="*">
