@@ -9,13 +9,13 @@ try{
 }
 
 type Props = {
-    name:string
+    name?:string
 }
 
 export default function Icon(props:Props) {
     return (
         <svg className='icon'>
-            <use xlinkHref={`#${props.name}`}></use>
+            {props.name && <use xlinkHref={`#${props.name}`} />}
         </svg>
     )
 }

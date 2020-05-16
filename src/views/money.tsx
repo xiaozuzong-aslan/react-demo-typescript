@@ -16,6 +16,7 @@ const Tags:React.FC = () =>{
         category:'-' as Category,
         amount:'0'
     })
+    
     const onChange = (obj:Partial<typeof selected>) =>{
         setSelected({
             ...selected,
@@ -24,6 +25,7 @@ const Tags:React.FC = () =>{
     }
     return (
         <Layout>
+           
            <TagsSection value={selected.tags} onChange={tags=>onChange({tags})}/>
            <NotesSection value={selected.note} onChange={note=>onChange({note})}/>
            <CategorySection value={selected.category} onChange={category=>onChange({category})} />

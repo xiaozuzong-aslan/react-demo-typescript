@@ -13,8 +13,6 @@ const useTags = ()=>{
     const findTag = (id:number) =>{
         return tags.filter(item=>item.id=== id)[0]
     } 
-    
-
     return {tags,setTags,findTag}
 }
 export default useTags

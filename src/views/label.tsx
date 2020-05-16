@@ -4,6 +4,7 @@ import Layout from 'components/Layout'
 import useTages from './useTag'
 import styled from 'styled-components'
 import Icon from 'components/Icon'
+import {ButtonWrapper} from 'components/Button'
 const TagList = styled.ol`
     /* padding:0 16px; */
     font-size:16px;
@@ -22,23 +23,9 @@ const TagList = styled.ol`
             fill:#d5d5d9;
         }
     }
-    
-    
-    
 `;
-const ButtonWrapper = styled.div`
-    display:flex;
-   
-    justify-content:center;
-    padding-top:20px;
-    button{
-        font-size:18px;
-        border:none;
-        padding:8px 12px;
-        background:#767676;
-        border-radius:4px;
-    }
-`;
+
+
 
 export default function Money() {
     const {tags} = useTages()
