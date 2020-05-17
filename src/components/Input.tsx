@@ -4,14 +4,17 @@ import styled from 'styled-components'
 const  Label = styled.label`
     display:flex;
     align-items:center;
+    
     span{
         margin-right:16px;
+        
     }
     input{
         flex-grow:1;
         border:none;
-        height:72px;
-        background:transparent;
+        background:none;
+        height:44px;
+        
     }
 `;
 type Props = {

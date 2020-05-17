@@ -2,7 +2,7 @@ import React from 'react'
 import Nav from 'components/Nav'
 import styled from 'styled-components'
 
-const Layout  = styled.div`
+const LayoutWrapper  = styled.div`
   background:white;
   min-height:100vh;
   display:flex;
@@ -14,11 +14,16 @@ const Main = styled.main`
   display:flex;
   flex-direction:column;
 `;
-export default function(props:any) {
-    return (
-        <Layout>
-            <Main>{props.children}</Main>
-            <Nav />
-        </Layout>
-    )
+type Props = {
+
+} & React.HtmlHTMLAttributes<HTMLElement>
+
+const Layout:React.FC<Props> = (props) => {
+  return (
+      <LayoutWrapper>
+          <Main>{props.children}</Main>
+          <Nav />
+      </LayoutWrapper>
+  )
 }
+export default Layout
