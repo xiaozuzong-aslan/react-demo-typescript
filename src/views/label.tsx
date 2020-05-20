@@ -29,6 +29,7 @@ const TagList = styled.ol`
 
 export default function Money() {
     const {tags,addTag} = useTages()
+    
     return (
         <Layout>
             <TagList>
