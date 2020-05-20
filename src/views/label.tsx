@@ -28,14 +28,13 @@ const TagList = styled.ol`
 
 
 export default function Money() {
-    const {tags} = useTages()
-    
+    const {tags,addTag} = useTages()
     return (
         <Layout>
             <TagList>
             {tags.map(item=><li key={item.id}><Link to={`/tags/${item.id}`} > <span className='oneline'>{item.name}</span><Icon name='right'/></Link></li>)}
             </TagList>
-            <ButtonWrapper ><button>新建标签</button></ButtonWrapper>
+            <ButtonWrapper ><button onClick={addTag}>新建标签</button></ButtonWrapper>
         </Layout>
     )
 }

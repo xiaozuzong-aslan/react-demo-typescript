@@ -1,5 +1,6 @@
 import React from 'react'
 import useTags from './useTag'
+import {useHistory} from 'react-router-dom'
 import styled from 'styled-components'
 import {useParams} from 'react-router-dom'
 import Layout from 'components/Layout'
@@ -12,7 +13,6 @@ import {ButtonWrapper} from 'components/Button'
 type Params = {
     id:string
 }
-
 
 const MainWrapper = styled.div`
     flex-grow:1;
@@ -36,29 +36,48 @@ const MainWrapper = styled.div`
     }
 `;
 
-export default function TgaEdit() {
-    const {findTag} = useTags()
+const TgaEdit:React.FC = () => {
+    const {findTag,updateTag,deleteTag} = useTags()
    
-    const id = useParams<Params>().id
-    const currentTag = findTag(parseInt(id))
-    console.log(currentTag)
-
+    const id = parseInt(useParams<Params>().id)
+    const currentTag = findTag(id)
+    // console.log(currentTag)
+    const tagContent = (tag:typeof currentTag) =>{
+        return (
+            <>
+                <div className="inputWrapper">
+                    <Input type="text"  
+                    label='标签名' 
+                    placeholder='标签名' 
+                    value={currentTag.name}
+                    onChange={
+                        (e)=>{
+                            updateTag(id,e.target.value)
+                        }
+                    } />
+                </div>
+                <ButtonWrapper><button onClick={()=>{deleteTag(id)}}>删除标签</button></ButtonWrapper>
+            </>
+        )
+    }
+    const history = useHistory()
+    const clickBack = () =>{
+        history.goBack()
+    }
+    console.log(id)
     return (
         <Layout>
             <MainWrapper>
                 <header>
-                    <Icon name="left"/>
+                    <Icon name="left" onClick={clickBack}/>
                         <span>编辑标签</span>
                     <Icon />
                 </header>
-                <div className="inputWrapper">
-                    <Input type="text"  label='标签名' placeholder='标签名' value={currentTag.name} onChange={(e)=>{
-                        console.log(e)
-                    }}/>
-                </div>
-                <ButtonWrapper><button>删除标签</button></ButtonWrapper>
+                    {currentTag ?  tagContent(currentTag): <span>标签已被删除</span>}
             </MainWrapper>
            
         </Layout>
     )
 }
+
+export default TgaEdit 

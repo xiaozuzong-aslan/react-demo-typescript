@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import useTages from '../useTag'
-import createId from 'helpers/createId'
+
 const Wrapper = styled.section`
     
     flex-grow:1;
@@ -48,7 +48,7 @@ type Props = {
 
 const TagsSection:React.FC<Props> = (props) => {
     
-    const {tags,setTags} = useTages()
+    const {tags,addTag} = useTages()
     
     // const [list,setList] = useState<string[]>([])
     const list = props.value;
@@ -56,17 +56,7 @@ const TagsSection:React.FC<Props> = (props) => {
         const index = list.indexOf(tagId)
         index>=0 ? props.onChange(list.filter(item=>item!==tagId)) :props.onChange([...list,tagId])
     }
-    const add = ()=>{
-        const name = window.prompt('请输入标签名')
-        if(name!== null){
-            if(name.length > 0){
-                setTags(state=>[...state,{id:createId(),name}])
-            }else{
-                window.alert('内容不能为空哒')
-            }
-        }
-        
-    }
+   
     return (
         <Wrapper>
             <ol>
@@ -77,7 +67,7 @@ const TagsSection:React.FC<Props> = (props) => {
                }}
                >{item.name}</li>)}
             </ol>
-            <div><button onClick={add}>新建标签</button></div>
+            <div><button onClick={addTag}>新建标签</button></div>
             
         </Wrapper>
     )

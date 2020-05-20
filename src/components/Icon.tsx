@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React, { SVGAttributes } from 'react'
+import cs from 'classnames'
 
 let importAll = (requireContext:__WebpackModuleApi.RequireContext) => requireContext.keys().forEach(requireContext);
 try{
@@ -10,12 +10,14 @@ try{
 
 type Props = {
     name?:string
-}
+} & React.SVGAttributes<SVGElement>
 
-export default function Icon(props:Props) {
+const Icon:React.FC<Props> = (props) => {
+    const {name,children,className,...reset} = props
     return (
-        <svg className='icon'>
-            {props.name && <use xlinkHref={`#${props.name}`} />}
+        <svg className={cs('icon',className)} {...reset}>
+            {props.name && <use xlinkHref={`#${name}`} />}
         </svg>
     )
 }
+export default Icon
