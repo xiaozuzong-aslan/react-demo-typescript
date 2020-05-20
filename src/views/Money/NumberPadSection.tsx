@@ -5,7 +5,8 @@ import calculation from './NumberpadSection/calculation'
 
 type Props = {
     value:string,
-    onChange:(amount:string)=>void
+    onChange:(amount:string)=>void,
+    onOK:()=>void
 }
 const NumberPadSection:React.FC<Props> = (props) =>{
     // const [output,setOutput] = useState<string>('0')
@@ -20,7 +21,7 @@ const NumberPadSection:React.FC<Props> = (props) =>{
                         props.onChange(newText)
                     }
                 }else if(text === 'OK'){
-                    console.log('xxxxx')
+                    props.onOK()
                 }
             }
     }

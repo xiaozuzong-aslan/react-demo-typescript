@@ -1,5 +1,5 @@
 import React from 'react'
-import useTags from './useTag'
+import useTags from 'hooks/useTag'
 import {useHistory} from 'react-router-dom'
 import styled from 'styled-components'
 import {useParams} from 'react-router-dom'
