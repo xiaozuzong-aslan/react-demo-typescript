@@ -6,14 +6,9 @@ import createId from 'helpers/createId'
 //     {id:3,name:'住'},
 //     {id:4,name:'行'}
 // ]
-let f = 0
-const x = ()=>{
-    f++
-    return f
 
-}
 const useTags = ()=>{
-    console.log(x())
+    
     const [tags,setTags] = useState<{id:number,name:string}[]>([])
     const findTag = (id:number) =>{
         return tags.filter(item=>item.id === id)[0]
