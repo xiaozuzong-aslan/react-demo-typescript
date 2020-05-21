@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {useUpdate} from 'hooks/useUpdate'
 type RecordItem = {
-    tagId:number[],
+    tags:string[],
     note:string,
     category:'+'|'-',
     amount:string,
@@ -19,7 +19,7 @@ const useRecords = () =>{
         window.localStorage.setItem('records',JSON.stringify(records))
     },records)
     const addRecords = (newRecord:newRecord) =>{
-        if(newRecord.tagId.length<1){
+        if(newRecord.tags.length<1){
             alert('必须选一个标签')
             return
         }

@@ -40,16 +40,16 @@ const Wrapper = styled.section`
    
 `;
 type Props = {
-    value:number[],
-    onChange:(selected:number[])=>void;
+    value:string[],
+    onChange:(selected:string[])=>void;
 }
 
 const TagsSection:React.FC<Props> = (props) => {
     const {tags,addTag} = useTages()
     const list = props.value;
-    const selected = (tagId:number) => {
-        const index = list.indexOf(tagId)
-        index>=0 ? props.onChange([]) :props.onChange([tagId])
+    const selected = (tag:string) => {
+        const index = list.indexOf(tag)
+        index>=0 ? props.onChange([]) :props.onChange([tag])
     }
     const mainRef = useRef<HTMLOListElement>(null)
     // useEffect(()=>{
@@ -63,9 +63,9 @@ const TagsSection:React.FC<Props> = (props) => {
         <Wrapper>
             <ol ref={mainRef}>
                {tags.map((item,index)=><li key={index} 
-               className={list.indexOf(item.id)>=0?'selected':''}
+               className={list.indexOf(item.name)>=0?'selected':''}
                onClick={()=>{
-                selected(item.id)
+                selected(item.name)
                }}
                >{item.name}</li>)}
             </ol>

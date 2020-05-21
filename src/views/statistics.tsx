@@ -3,7 +3,7 @@ import Layout from 'components/Layout'
 import useRecords from 'hooks/useRecords'
 import CategorySection from 'views/Money/Category'
 import styled from 'styled-components'
-import useTags from 'hooks/useTag'
+
 import jsday from 'dayjs'
 
 const StatisticsWrapper = styled.div`
@@ -22,6 +22,11 @@ const StatisticsWrapper = styled.div`
       
     }
   }
+  .notFind{
+    
+    text-align:center;
+    margin-top:20px;
+  }
 `;
 const Item = styled.div`
   display:flex;
@@ -35,6 +40,7 @@ const Item = styled.div`
     margin-left:16px;
     color:#999;
   }
+  
 `;
 
 
@@ -42,7 +48,7 @@ const Item = styled.div`
 export default function Statistics() {
   const [category,setCategory] = useState<'-'|'+'>('-')
   const {records}  = useRecords()
-  const {findTag} = useTags()
+  
   const selecteRecords = records.filter(item=>item.category === category)
   const hash:{[propName:string]:typeof records} = {} 
   const sortKeys = Array.from(new Set(selecteRecords.map(r=>{//改变hash为{时间:[data]}  返回值为排序好的[时间索引titel] 
@@ -76,19 +82,17 @@ export default function Statistics() {
       <Layout>
           <StatisticsWrapper>
             <CategorySection className='statisNav' value={category} onChange={category=>setCategory(category)}/>
-            { records  && sortKeys.map(title=>{
+            { records.length>=1?sortKeys.map(title=>{
               return (
                 <div key={title} className='items'>
-              
                   <h3>
                   <span>{beautyTime(title)}</span>
                   <span>总计:{hash[title].reduce((base,item)=>base+parseFloat(item.amount),0)}元</span>
-                  
                   </h3>
                   { hash[title].map(item=>{
                     return (
                     <Item key={item.createAt}>
-                        <div>{findTag(item.tagId[0]).name} </div>
+                        <div>{item.tags[0]} </div>
                         {item.note && <div className='note'>{item.note}</div> }
                         <div>￥{item.amount}</div>
                     </Item>
@@ -96,7 +100,7 @@ export default function Statistics() {
                 })}
                 </div>
               )
-            })}
+            }):<div className='notFind'>目前没有数据，赶快去记一笔吧</div>}
           </StatisticsWrapper>
       </Layout>   
   )

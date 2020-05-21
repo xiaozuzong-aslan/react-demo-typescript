@@ -14,7 +14,7 @@ const CategoryWrapper = styled.div`
 
 
 const defalutFromData = {
-    tagId:[] as number[],
+    tags:[] as string[],
     note:'',
     category:'-' as Category,
     amount:'0'
@@ -41,7 +41,7 @@ const Tags:React.FC = () =>{
     }
     return (
         <Layout>
-           <TagsSection value={selected.tagId} onChange={tagId=>onChange({tagId})}/>
+           <TagsSection value={selected.tags} onChange={tags=>onChange({tags})}/>
            <NotesSection value={selected.note} onChange={note=>onChange({note})}/>
            <CategoryWrapper>
                <CategorySection  value={selected.category} onChange={category=>onChange({category})} />
