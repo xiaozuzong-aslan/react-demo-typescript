@@ -8,6 +8,7 @@ const LayoutWrapper  = styled.div`
   display:flex;
   flex-direction:column;
   color:#333;
+  
 `
 const Main = styled.main`
   flex-grow:1;

@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {useUpdate} from 'hooks/useUpdate'
 type RecordItem = {
-    tags:number[],
+    tagId:number[],
     note:string,
     category:'+'|'-',
     amount:string,
@@ -19,8 +19,17 @@ const useRecords = () =>{
         window.localStorage.setItem('records',JSON.stringify(records))
     },records)
     const addRecords = (newRecord:newRecord) =>{
+        if(newRecord.tagId.length<1){
+            alert('必须选一个标签')
+            return
+        }
+        if(newRecord.amount === '0'){
+            alert('没有填写金额哦亲')
+            return
+        }
         const record = {...newRecord,createAt:new Date().toISOString()}
         setRecords([...records,record])
+        alert('保存成功')
     }
    
     return {records,addRecords}

@@ -5,9 +5,16 @@ import TagsSection from './Money/TagsSection';
 import NotesSection from './Money/NotesSection';
 import CategorySection from './Money/Category';
 import NumberPadSection from './Money/NumberPadSection';
+import styled from 'styled-components'
+
+const CategoryWrapper = styled.div`
+    font-size:24px;
+    background:#c4c4c4;
+`;
+
 
 const defalutFromData = {
-    tags:[] as number[],
+    tagId:[] as number[],
     note:'',
     category:'-' as Category,
     amount:'0'
@@ -25,19 +32,21 @@ const Tags:React.FC = () =>{
             ...obj
         })
     }
-    const {records,addRecords} = useRecords()
-   console.log(records)
+    const {addRecords} = useRecords()
+ 
     const submit = ()=>{
         addRecords(selected)
-        alert('保存成功')
         setSelected(defalutFromData)
+        
     }
     return (
         <Layout>
-           {JSON.stringify(selected)}
-           <TagsSection value={selected.tags} onChange={tags=>onChange({tags})}/>
+           <TagsSection value={selected.tagId} onChange={tagId=>onChange({tagId})}/>
            <NotesSection value={selected.note} onChange={note=>onChange({note})}/>
-           <CategorySection value={selected.category} onChange={category=>onChange({category})} />
+           <CategoryWrapper>
+               <CategorySection  value={selected.category} onChange={category=>onChange({category})} />
+           </CategoryWrapper>
+           
            <NumberPadSection value={selected.amount} onChange={amount=>onChange({amount})} onOK={submit} />
         </Layout>
     )

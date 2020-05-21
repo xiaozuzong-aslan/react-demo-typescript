@@ -9,7 +9,6 @@ export const useUpdate = (fn:()=>void,deps:any[]) =>{
     useEffect(()=>{
         if(count.current>1){
            fn()
-        //    window.localStorage.setItem('tags',JSON.stringify(tags))
         }
     },[deps,fn])
 }

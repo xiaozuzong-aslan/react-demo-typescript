@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useRef} from 'react'
 import styled from 'styled-components'
 import useTages from 'hooks/useTag'
 
 const Wrapper = styled.section`
-    
     flex-grow:1;
     padding:12px 16px;
     display:flex;
@@ -43,23 +42,26 @@ const Wrapper = styled.section`
 type Props = {
     value:number[],
     onChange:(selected:number[])=>void;
-    
 }
 
 const TagsSection:React.FC<Props> = (props) => {
-    
     const {tags,addTag} = useTages()
-    
-    // const [list,setList] = useState<string[]>([])
     const list = props.value;
     const selected = (tagId:number) => {
         const index = list.indexOf(tagId)
-        index>=0 ? props.onChange(list.filter(item=>item!==tagId)) :props.onChange([...list,tagId])
+        index>=0 ? props.onChange([]) :props.onChange([tagId])
     }
-   
+    const mainRef = useRef<HTMLOListElement>(null)
+    // useEffect(()=>{
+    //     if(mainRef.current){
+    //         if(mainRef.current.scrollHeight > 76){
+    //             mainRef.current.scrollTop = mainRef.current.scrollHeight
+    //         }
+    //     }
+    // },[tags])//下拉功能
     return (
         <Wrapper>
-            <ol>
+            <ol ref={mainRef}>
                {tags.map((item,index)=><li key={index} 
                className={list.indexOf(item.id)>=0?'selected':''}
                onClick={()=>{

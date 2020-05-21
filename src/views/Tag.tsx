@@ -34,6 +34,10 @@ const MainWrapper = styled.div`
         padding: 0 14px;
         margin-top:8px;
     }
+    .noFind{
+        text-align:center;
+        margin-top:30px;
+    }
 `;
 
 const TgaEdit:React.FC = () => {
@@ -42,6 +46,11 @@ const TgaEdit:React.FC = () => {
     const id = parseInt(useParams<Params>().id)
     const currentTag = findTag(id)
     // console.log(currentTag)
+    const removeTag = ()=>{
+        deleteTag(id)
+        alert('已删除该标签')
+        history.goBack()
+    }
     const tagContent = (tag:typeof currentTag) =>{
         return (
             <>
@@ -49,14 +58,14 @@ const TgaEdit:React.FC = () => {
                     <Input type="text"  
                     label='标签名' 
                     placeholder='标签名' 
-                    value={currentTag.name}
+                    value={tag.name}
                     onChange={
                         (e)=>{
                             updateTag(id,e.target.value)
                         }
                     } />
                 </div>
-                <ButtonWrapper><button onClick={()=>{deleteTag(id)}}>删除标签</button></ButtonWrapper>
+                <ButtonWrapper><button onClick={removeTag}>删除标签</button></ButtonWrapper>
             </>
         )
     }
@@ -64,7 +73,7 @@ const TgaEdit:React.FC = () => {
     const clickBack = () =>{
         history.goBack()
     }
-    console.log(id)
+   
     return (
         <Layout>
             <MainWrapper>
@@ -73,7 +82,7 @@ const TgaEdit:React.FC = () => {
                         <span>编辑标签</span>
                     <Icon />
                 </header>
-                    {currentTag ?  tagContent(currentTag): <span>标签已被删除</span>}
+                    {currentTag ?  tagContent(currentTag): <div className="noFind">标签已被删除</div>}
             </MainWrapper>
            
         </Layout>

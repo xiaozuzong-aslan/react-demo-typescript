@@ -21,8 +21,8 @@ const NavWrapper = styled.nav`
         align-items:center;
         width:100%;
         &.actived{
-          color:red;
-          fill:red;
+          color:#FF6A6A;
+          fill:#FF6A6A;
         }
       }
       .icon{
