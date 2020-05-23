@@ -23,7 +23,8 @@ const Wrapper = styled.section`
             margin:8px 12px;
             font-size:14px;
             &.selected{
-                background:red;
+                background:#696969;
+                color:white;
             }
         }
     }
