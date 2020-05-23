@@ -1,6 +1,7 @@
 {
   "name": "money",
   "version": "0.1.0",
+  "homepage": "https://xiaozuzong-aslan.github.io/react-typeScript-website",
   "private": true,
   "dependencies": {
     "@babel/core": "7.9.0",
